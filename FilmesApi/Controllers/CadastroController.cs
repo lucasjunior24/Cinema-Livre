@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FilmesApi.Data.Dtos.Usuario;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,11 +7,14 @@ using System.Threading.Tasks;
 
 namespace FilmesApi.Controllers
 {
-    public class CadastroController : Controller
+    [Route("[controller]")]
+    [ApiController]
+    public class CadastroController : ControllerBase
     {
-        public IActionResult Index()
+        [HttpPost]
+        public IActionResult Index(CreateUsuarioDto createUsuarioDto)
         {
-            return View();
+            return Ok();
         }
     }
 }
