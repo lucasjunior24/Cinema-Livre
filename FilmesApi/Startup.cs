@@ -1,4 +1,5 @@
 using FilmesApi.Data;
+using FilmesApi.Services;
 using FilmesAPI.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,6 +33,7 @@ namespace FilmesAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("CinemaConnection")));
+            services.AddScoped<FilmeService, FilmeService>();
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
