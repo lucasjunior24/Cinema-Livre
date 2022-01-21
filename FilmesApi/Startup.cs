@@ -33,11 +33,14 @@ namespace FilmesAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDbContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("CinemaConnection")));
+            services.AddDbContext<AppDbContext>(opts => 
+                opts.UseSqlServer(Configuration.GetConnectionString("CinemaConnection"))
+            );
             services.AddIdentity<IdentityUser<int>, IdentityRole<int>>()
                 .AddEntityFrameworkStores<AppDbContext>();
 
             services.AddScoped<FilmeService, FilmeService>();
+            services.AddScoped<CadastroService, CadastroService>();
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
