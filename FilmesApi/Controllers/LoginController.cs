@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace FilmesApi.Controllers
 {
-    [Route("[controller]")]
     [ApiController]
+    [Route("[controller]")]
     public class LoginController : ControllerBase
     {
         private LoginService loginService;
@@ -25,8 +25,8 @@ namespace FilmesApi.Controllers
         {
             Result result = loginService.LogaUsuario(loginRequest);
 
-            if (result.IsFailed) return StatusCode(500);
-            return Ok();
+            if (result.IsFailed) return Unauthorized(result.Errors);
+            return Ok(result.Successes);
         }
     }
 }

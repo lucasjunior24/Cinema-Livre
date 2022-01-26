@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace FilmesApi.Migrations.UserDb
+namespace FilmesApi.Migrations
 {
     public partial class User : Migration
     {

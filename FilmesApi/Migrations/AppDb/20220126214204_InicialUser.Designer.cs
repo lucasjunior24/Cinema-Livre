@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace FilmesApi.Migrations
+namespace FilmesApi.Migrations.AppDb
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220126202811_InicialUser")]
+    [Migration("20220126214204_InicialUser")]
     partial class InicialUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

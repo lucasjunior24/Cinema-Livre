@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace FilmesApi.Migrations
+namespace FilmesApi.Migrations.AppDb
 {
-    public partial class Inicial : Migration
+    public partial class InicialUser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
