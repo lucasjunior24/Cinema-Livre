@@ -18,7 +18,7 @@ namespace FilmesApi.Services
             this.tokenService = tokenService;
         }
 
-        internal Result LogaUsuario(LoginRequest loginRequest)
+        public Result LogaUsuario(LoginRequest loginRequest)
         {
             var result = signInManager.PasswordSignInAsync(loginRequest.Username, loginRequest.Password, false, false);
 
