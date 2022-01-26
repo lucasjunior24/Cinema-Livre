@@ -30,7 +30,7 @@ namespace FilmesAPI
                 opts.UseSqlServer(Configuration.GetConnectionString("CinemaDbConnection"))
             );
             services.AddIdentity<IdentityUser<int>, IdentityRole<int>>()
-                .AddEntityFrameworkStores<AppDbContext>();
+                .AddEntityFrameworkStores<UserDbContext>();
 
             services.AddScoped<FilmeService, FilmeService>();
             services.AddScoped<CadastroService, CadastroService>();
