@@ -1,23 +1,13 @@
 using FilmesApi.Data;
 using FilmesApi.Services;
-using FilmesAPI.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace FilmesAPI
 {
@@ -33,8 +23,11 @@ namespace FilmesAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDbContext>(opts => 
-                opts.UseSqlServer(Configuration.GetConnectionString("CinemaConnection"))
+            services.AddDbContext<UserDbContext>(opts => 
+                opts.UseSqlServer(Configuration.GetConnectionString("CinemaDbConnection"))
+            );
+            services.AddDbContext<AppDbContext>(opts =>
+                opts.UseSqlServer(Configuration.GetConnectionString("CinemaDbConnection"))
             );
             services.AddIdentity<IdentityUser<int>, IdentityRole<int>>()
                 .AddEntityFrameworkStores<AppDbContext>();
