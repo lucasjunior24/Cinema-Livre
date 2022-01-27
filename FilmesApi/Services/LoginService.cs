@@ -2,6 +2,7 @@
 using FilmesApi.Data.Dtos.Usuario;
 using FluentResults;
 using Microsoft.AspNetCore.Identity;
+using System;
 using System.Linq;
 
 namespace FilmesApi.Services
@@ -31,6 +32,13 @@ namespace FilmesApi.Services
                 return Result.Ok().WithSuccess(token.Value);
             }
             return Result.Fail("Login falhou");
+        }
+
+        public Result DeslogaUsuario()
+        {
+            var result = signInManager.SignOutAsync();
+            if (result.IsCompletedSuccessfully) return Result.Ok();
+            return Result.Fail("Logout falhou");
         }
     }
 }

@@ -29,7 +29,9 @@ namespace FilmesAPI
             services.AddDbContext<AppDbContext>(opts =>
                 opts.UseSqlServer(Configuration.GetConnectionString("CinemaDbConnection"))
             );
-            services.AddIdentity<IdentityUser<int>, IdentityRole<int>>()
+            services.AddIdentity<IdentityUser<int>, IdentityRole<int>>(
+                opt => opt.SignIn.RequireConfirmedEmail = true
+                )
                 .AddEntityFrameworkStores<UserDbContext>();
 
             services.AddScoped<FilmeService, FilmeService>();

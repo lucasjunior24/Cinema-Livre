@@ -28,5 +28,14 @@ namespace FilmesApi.Controllers
             if (result.IsFailed) return Unauthorized(result.Errors);
             return Ok(result.Successes);
         }
+
+        [HttpPost("logout")]
+        public IActionResult DeslogaUsuario()
+        {
+            Result result = loginService.DeslogaUsuario();
+
+            if (result.IsFailed) return Unauthorized(result.Errors);
+            return Ok(result.Successes);
+        }
     }
 }
