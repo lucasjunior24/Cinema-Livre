@@ -32,7 +32,7 @@ namespace FilmesApi.Services
                     configuration.GetValue<int>("EmailSettings:Port"), true);
 
                 client.AuthenticationMechanisms.Remove("XOUATH2");
-                client.AuthenticateAsync(
+                client.Authenticate(
                     configuration.GetValue<string>("EmailSettings:From"),
                     configuration.GetValue<string>("EmailSettings:Password"));
 

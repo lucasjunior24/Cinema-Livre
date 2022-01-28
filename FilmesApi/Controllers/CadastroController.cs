@@ -26,8 +26,8 @@ namespace FilmesApi.Controllers
             return Ok(result);
         }
 
-        [HttpPost("/ativa")]
-        public IActionResult AtivaContaUsuario(AtivaContaRequest ativaConta)
+        [HttpGet("/ativa")]
+        public IActionResult AtivaContaUsuario([FromQuery] AtivaContaRequest ativaConta)
         {
             var result = cadastroService.AtivaContaUsuario(ativaConta);
 
