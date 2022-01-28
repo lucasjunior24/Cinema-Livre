@@ -1,12 +1,15 @@
 ﻿using AutoMapper;
 using FilmesApi.Data.Dtos.Requests;
 using FilmesApi.Data.Dtos.Usuario;
+using FilmesApi.Models;
 using FluentResults;
 using Microsoft.AspNetCore.Identity;
+using MimeKit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace FilmesApi.Services
 {
@@ -14,11 +17,16 @@ namespace FilmesApi.Services
     {
         private readonly IMapper mapper;
         private readonly UserManager<IdentityUser<int>> userManager;
+        private readonly EmailService emailService;
 
-        public CadastroService(IMapper mapper, UserManager<IdentityUser<int>> userManager)
+
+        public CadastroService(IMapper mapper, 
+                               UserManager<IdentityUser<int>> userManager, 
+                               EmailService emailService)
         {
             this.mapper = mapper;
             this.userManager = userManager;
+            this.emailService = emailService;
         }
 
         public string CadastrarUsuario(CreateUsuarioDto createUsuarioDto)
@@ -30,6 +38,10 @@ namespace FilmesApi.Services
             if (resultdoIdentity.Result.Succeeded)
             {
                 var code = userManager.GenerateEmailConfirmationTokenAsync(usuarioIdentity).Result;
+
+                var encodedCode = HttpUtility.UrlEncode(code);
+                emailService.EnviarEmail(new[] { usuarioIdentity.Email },
+                    "Link de ativação", usuarioIdentity.Id, encodedCode);
                 return code;
             }
             return null;

@@ -4,6 +4,7 @@ using FluentResults;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace FilmesApi.Services
 {
@@ -19,26 +20,26 @@ namespace FilmesApi.Services
             this.tokenService = tokenService;
         }
 
-        public Result LogaUsuario(LoginRequest loginRequest)
+        public async Task<Token> LogaUsuario(LoginRequest loginRequest)
         {
-            var result = signInManager.PasswordSignInAsync(loginRequest.Username, loginRequest.Password, false, false);
+            var result = await signInManager.PasswordSignInAsync(loginRequest.Username, loginRequest.Password, false, false);
 
-            if (result.Result.Succeeded)
+            if (result.Succeeded)
             {
                 var identity = signInManager.UserManager.Users
                     .FirstOrDefault(usuario => usuario.NormalizedUserName == loginRequest.Username.ToUpper());
 
                 Token token = tokenService.CreateToken(identity);
-                return Result.Ok().WithSuccess(token.Value);
+                return token;
             }
-            return Result.Fail("Login falhou");
+            return null;
         }
 
-        public Result DeslogaUsuario()
+        public string DeslogaUsuario()
         {
             var result = signInManager.SignOutAsync();
-            if (result.IsCompletedSuccessfully) return Result.Ok();
-            return Result.Fail("Logout falhou");
+            if (result.IsCompletedSuccessfully) return "Logout realizado com Sucesso";
+            return null;
         }
     }
 }

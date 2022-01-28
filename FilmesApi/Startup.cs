@@ -40,7 +40,8 @@ namespace FilmesAPI
             services.AddScoped<CadastroService, CadastroService>();
             services.AddScoped<TokenService, TokenService>();
             services.AddScoped<LoginService, LoginService>();
-            
+            services.AddScoped<EmailService, EmailService>();
+
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

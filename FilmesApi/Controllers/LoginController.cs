@@ -21,21 +21,21 @@ namespace FilmesApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult LogaUsuario(LoginRequest loginRequest)
+        public async Task<IActionResult> LogaUsuario(LoginRequest loginRequest)
         {
-            Result result = loginService.LogaUsuario(loginRequest);
+            var token = await loginService.LogaUsuario(loginRequest);
 
-            if (result.IsFailed) return Unauthorized(result.Errors);
-            return Ok(result.Successes);
+            if (token == null) return Unauthorized();
+            return Ok(token);
         }
 
         [HttpPost("logout")]
         public IActionResult DeslogaUsuario()
         {
-            Result result = loginService.DeslogaUsuario();
+            var result = loginService.DeslogaUsuario();
 
-            if (result.IsFailed) return Unauthorized(result.Errors);
-            return Ok(result.Successes);
+            if (result == null) return Unauthorized();
+            return Ok(result);
         }
     }
 }
