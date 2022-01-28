@@ -13,7 +13,7 @@ namespace FilmesApi.Controllers
     [Route("[controller]")]
     public class LoginController : ControllerBase
     {
-        private LoginService loginService;
+        private readonly LoginService loginService;
 
         public LoginController(LoginService loginService)
         {

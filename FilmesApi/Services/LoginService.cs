@@ -9,8 +9,8 @@ namespace FilmesApi.Services
 {
     public class LoginService
     {
-        private SignInManager<IdentityUser<int>> signInManager;
-        private TokenService tokenService;
+        private readonly SignInManager<IdentityUser<int>> signInManager;
+        private readonly TokenService tokenService;
 
         public LoginService(SignInManager<IdentityUser<int>> signInManager, 
                             TokenService tokenService)
