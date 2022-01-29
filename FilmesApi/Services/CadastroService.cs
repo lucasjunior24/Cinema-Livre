@@ -1,12 +1,7 @@
 ﻿using AutoMapper;
 using FilmesApi.Data.Dtos.Requests;
 using FilmesApi.Data.Dtos.Usuario;
-using FilmesApi.Models;
-using FluentResults;
 using Microsoft.AspNetCore.Identity;
-using MimeKit;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
