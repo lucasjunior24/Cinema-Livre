@@ -7,7 +7,7 @@ namespace FilmesApi.Services
 {
     public class EmailService
     {
-        private IConfiguration configuration;
+        private readonly IConfiguration configuration;
 
         public EmailService(IConfiguration configuration)
         {

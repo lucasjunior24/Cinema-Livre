@@ -12,12 +12,13 @@ namespace FilmesApi.Services
 {
     public class TokenService
     {
-        public Token CreateToken(IdentityUser<int> Usuario)
+        public Token CreateToken(IdentityUser<int> Usuario, string role)
         {
             Claim[] direitosUsuarios = new Claim[]
             {
                 new Claim("username", Usuario.UserName),
-                new Claim("id", Usuario.Id.ToString())
+                new Claim("id", Usuario.Id.ToString()),
+                new Claim(ClaimTypes.Role, role)
             };
 
             var chave = new SymmetricSecurityKey(

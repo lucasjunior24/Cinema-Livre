@@ -37,5 +37,14 @@ namespace FilmesApi.Controllers
             if (result == null) return Unauthorized();
             return Ok(result);
         }
+
+        [HttpPost("solicita-reset")]
+        public IActionResult SolicitaResetSenha(ResetSenha resetSennha)
+        {
+            var result = loginService.SolicitaResetSenhaUsuario(resetSennha);
+
+            if (result == null) return StatusCode(500, "Falha ao realizar redefinição de senha!");
+            return Ok($"Redefinição de senha realizada com Sucesso! Código de ativação '{result}'");
+        }
     }
 }

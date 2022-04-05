@@ -1,4 +1,5 @@
-﻿using FilmesApi.Data.Dtos.Requests;
+﻿using FilmesApi.Controllers;
+using FilmesApi.Data.Dtos.Requests;
 using FilmesApi.Data.Dtos.Usuario;
 using FluentResults;
 using Microsoft.AspNetCore.Identity;
@@ -29,8 +30,23 @@ namespace FilmesApi.Services
                 var identity = signInManager.UserManager.Users
                     .FirstOrDefault(usuario => usuario.NormalizedUserName == loginRequest.Username.ToUpper());
 
-                Token token = tokenService.CreateToken(identity);
+                Token token = tokenService.CreateToken(identity, signInManager.UserManager
+                    .GetRolesAsync(identity).Result.FirstOrDefault()   
+                 );
                 return token;
+            }
+            return null;
+        }
+
+        public string SolicitaResetSenhaUsuario(ResetSenha resetSennha)
+        {
+            var identity = signInManager.UserManager.Users
+                    .FirstOrDefault(u => u.NormalizedEmail == resetSennha.Email.ToUpper());
+            if(identity != null)
+            {
+                var codigoRecuperacao = signInManager
+                    .UserManager.GeneratePasswordResetTokenAsync(identity).Result;
+                return codigoRecuperacao;
             }
             return null;
         }

@@ -13,15 +13,17 @@ namespace FilmesApi.Services
         private readonly IMapper mapper;
         private readonly UserManager<IdentityUser<int>> userManager;
         private readonly EmailService emailService;
+        private readonly RoleManager<IdentityRole<int>> roleManager;
 
-
-        public CadastroService(IMapper mapper, 
-                               UserManager<IdentityUser<int>> userManager, 
-                               EmailService emailService)
+        public CadastroService(IMapper mapper,
+                               UserManager<IdentityUser<int>> userManager,
+                               EmailService emailService,
+                               RoleManager<IdentityRole<int>> roleManager)
         {
             this.mapper = mapper;
             this.userManager = userManager;
             this.emailService = emailService;
+            this.roleManager = roleManager;
         }
 
         public string CadastrarUsuario(CreateUsuarioDto createUsuarioDto)
@@ -30,6 +32,11 @@ namespace FilmesApi.Services
             IdentityUser<int> usuarioIdentity = mapper.Map<IdentityUser<int>>(usuario);
             Task<IdentityResult> resultdoIdentity = userManager
                 .CreateAsync(usuarioIdentity, createUsuarioDto.Password);
+
+            var createRole = roleManager.CreateAsync(new IdentityRole<int>("admin")).Result;
+            var userRole = userManager.AddToRoleAsync(usuarioIdentity, "admin").Result;
+
+
             if (resultdoIdentity.Result.Succeeded)
             {
                 var code = userManager.GenerateEmailConfirmationTokenAsync(usuarioIdentity).Result;
