@@ -3,6 +3,7 @@ using FilmesApi.Data.Dtos.Usuario;
 using FilmesApi.Services;
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace FilmesApi.Controllers
 {
@@ -18,9 +19,9 @@ namespace FilmesApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult CadastraUsuario(CreateUsuarioDto createUsuarioDto)
+        public async Task<IActionResult> CadastraUsuario(CreateUsuarioDto createUsuarioDto)
         {
-            var result = cadastroService.CadastrarUsuario(createUsuarioDto);
+            var result = await cadastroService.CadastrarUsuario(createUsuarioDto);
 
             if (result == null) return StatusCode(500);
             return Ok(result);

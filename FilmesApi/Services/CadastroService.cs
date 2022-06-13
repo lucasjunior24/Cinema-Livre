@@ -26,18 +26,18 @@ namespace FilmesApi.Services
             this.roleManager = roleManager;
         }
 
-        public string CadastrarUsuario(CreateUsuarioDto createUsuarioDto)
+        public async Task<string> CadastrarUsuario(CreateUsuarioDto createUsuarioDto)
         {
             Usuario usuario = mapper.Map<Usuario>(createUsuarioDto);
             IdentityUser<int> usuarioIdentity = mapper.Map<IdentityUser<int>>(usuario);
-            Task<IdentityResult> resultdoIdentity = userManager
+            IdentityResult resultdoIdentity = await userManager
                 .CreateAsync(usuarioIdentity, createUsuarioDto.Password);
 
-            var createRole = roleManager.CreateAsync(new IdentityRole<int>("admin")).Result;
-            var userRole = userManager.AddToRoleAsync(usuarioIdentity, "admin").Result;
+            await roleManager.CreateAsync(new IdentityRole<int>("admin"));
+            await userManager.AddToRoleAsync(usuarioIdentity, "admin");
 
 
-            if (resultdoIdentity.Result.Succeeded)
+            if (resultdoIdentity.Succeeded)
             {
                 var code = userManager.GenerateEmailConfirmationTokenAsync(usuarioIdentity).Result;
 

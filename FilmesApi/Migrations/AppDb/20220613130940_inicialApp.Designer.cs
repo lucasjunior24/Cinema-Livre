@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilmesApi.Migrations.AppDb
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220126214204_InicialUser")]
-    partial class InicialUser
+    [Migration("20220613130940_inicialApp")]
+    partial class inicialApp
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

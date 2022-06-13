@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FilmesApi.Migrations.AppDb
 {
-    public partial class InicialUser : Migration
+    public partial class inicialApp : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

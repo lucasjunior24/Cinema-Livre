@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://10.50.0.239:3333",
+      "applicationUrl": "http://10.50.0.227:3333",
       "sslPort": 44380
     }
   },
@@ -12,8 +12,8 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "http://10.50.0.239:3333",
-      //"applicationUrl": "http://10.50.0.239:3333",
+      "launchUrl": "http://10.50.0.227:3333",
+      //"applicationUrl": "http://10.50.0.227:3333",
       //"launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
@@ -24,21 +24,21 @@
       "commandName": "Project",
       "launchBrowser": true,
       "anonymousAuthentication": true,
-      "launchUrl": "http://10.50.0.239:3333",
+      "launchUrl": "http://10.50.0.227:3333",
       //"launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://10.50.0.239:3333"
+      "applicationUrl": "http://10.50.0.227:3333"
       //"applicationUrl": "http://127.0.0.1:3333"
 
     },
     "WSL": {
       "commandName": "WSL2",
       "launchBrowser": true,
-      "launchUrl": "https://10.50.0.239:5001/swagger",
+      "launchUrl": "https://10.50.0.227:5001/swagger",
       "environmentVariables": {
-        "ASPNETCORE_URLS": "https://10.50.0.239:5001;http://10.50.0.239:5000",
+        "ASPNETCORE_URLS": "https://10.50.0.227:5001;http://10.50.0.227:5000",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "distributionName": ""
