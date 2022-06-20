@@ -45,6 +45,19 @@ namespace FilmesApi.Controllers
             return NotFound();
         }
 
+        [HttpGet]
+        public IActionResult ObterTodos()
+        {
+            var gerente = _context.Gerentes.ToList();
+            if (gerente != null)
+            {
+                var gerenteDto = _mapper.Map<List<ReadGerenteDto>>(gerente);
+
+                return Ok(gerenteDto);
+            }
+            return NotFound();
+        }
+
         [HttpDelete("{id}")]
         public IActionResult DeletaGerente(int id)
         {

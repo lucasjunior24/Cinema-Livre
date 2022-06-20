@@ -53,6 +53,7 @@ namespace FilmesAPI
                     ClockSkew = TimeSpan.Zero
                 };
             });
+            services.AddCors();
 
             services.AddIdentity<IdentityUser<int>, IdentityRole<int>>(
                 opt => opt.SignIn.RequireConfirmedEmail = true
@@ -84,7 +85,12 @@ namespace FilmesAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FilmesApi v1"));
             }
-
+            app.UseCors(options =>
+            {
+                options.WithOrigins("http://localhost:3000");
+                options.AllowAnyMethod();
+                options.AllowAnyHeader();
+            });
             //app.UseHttpsRedirection();
 
             app.UseRouting();
